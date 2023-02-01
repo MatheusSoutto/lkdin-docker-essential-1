@@ -56,3 +56,31 @@ sudo usermod -aG docker $USER
 ```
 docker run hello-world
 ```
+
+## Troubleshooting issues
+
+### Could not connect to the docker daemon
+
+If you get an error saying that it could not connect to the docker daemon, make sure that it is running. This, along with the user not having been added to the docker group, is the most common issue that usually happens.
+
+Error message:
+*"Can't connect to docker daemon. Is 'docker -d' running on this host?"*
+
+A good fix is to enable the docker daemon to always start on boot with systemd.
+
+```
+sudo systemctl enable docker
+```
+
+Or you could just start the docker service manually, but you would need to always do it to use Docker the first time you log into the machine:
+```
+sudo systemctl start docker
+```
+Or:
+```
+sudo service docker start
+```
+
+### Other issues
+
+For other issues you are trying to troubleshoot, I suggest you take a look at the Docker documentation, they have a specific section for [Troubleshoot and diagnose](https://docs.docker.com/desktop/troubleshoot/overview/)
